@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>br.com.motorfraude</groupId>
+        <artifactId>motor-fraude-parent</artifactId>
+        <version>0.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>rule-management</artifactId>
+    <name>rule-management</name>
+    <description>Gestão de regras: versiona, valida, ativa, desliga e reverte regras, e serve o conjunto ativo (spec 002).</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>br.com.motorfraude</groupId>
+            <artifactId>rules-kernel</artifactId>
+            <version>${rules-kernel.version}</version>
+        </dependency>
+
+        <!-- Spring Boot, Postgres e Flyway entram nas Fases 4 e 5 -->
+
+        <!-- Testes -->
+        <dependency>
+            <groupId>br.com.motorfraude</groupId>
+            <artifactId>platform-commons</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <rules-kernel.version>0.1.0</rules-kernel.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>github-motor-fraude</id>
+            <url>https://maven.pkg.github.com/luizavramos/*</url>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>github-motor-fraude</id>
+            <url>https://maven.pkg.github.com/luizavramos/rule-management</url>
+        </repository>
+    </distributionManagement>
+</project>
