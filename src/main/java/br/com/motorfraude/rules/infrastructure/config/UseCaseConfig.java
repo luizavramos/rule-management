@@ -2,6 +2,7 @@ package br.com.motorfraude.rules.infrastructure.config;
 
 import br.com.motorfraude.rules.adapters.out.kernel.KernelRuleValidator;
 import br.com.motorfraude.rules.application.port.out.AuditLog;
+import br.com.motorfraude.rules.application.port.out.IdempotencyStore;
 import br.com.motorfraude.rules.application.port.out.RuleRepository;
 import br.com.motorfraude.rules.application.port.out.RuleSetRepository;
 import br.com.motorfraude.rules.application.port.out.RuleValidator;
@@ -12,6 +13,7 @@ import br.com.motorfraude.rules.application.usecase.CreateRuleVersion;
 import br.com.motorfraude.rules.application.usecase.DisableRule;
 import br.com.motorfraude.rules.application.usecase.GetActiveRuleSet;
 import br.com.motorfraude.rules.application.usecase.GetRule;
+import br.com.motorfraude.rules.application.usecase.IdempotencyGuard;
 import br.com.motorfraude.rules.application.usecase.ListRules;
 import br.com.motorfraude.rules.application.usecase.RollbackRuleSet;
 import br.com.motorfraude.rules.application.usecase.RuleSetPublisher;
@@ -90,6 +92,11 @@ public class UseCaseConfig {
     @Bean
     GetRule getRule(RuleRepository rules) {
         return new GetRule(rules);
+    }
+
+    @Bean
+    IdempotencyGuard idempotencyGuard(IdempotencyStore store, Clock clock) {
+        return new IdempotencyGuard(store, clock);
     }
 
     @Bean
