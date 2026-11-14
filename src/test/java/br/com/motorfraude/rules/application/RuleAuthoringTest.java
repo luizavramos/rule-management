@@ -3,7 +3,7 @@ package br.com.motorfraude.rules.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import br.com.motorfraude.rules.application.port.out.RuleValidator.TestCase;
+import br.com.motorfraude.rules.application.gateway.RuleValidator.TestCase;
 import br.com.motorfraude.rules.application.usecase.RuleContent;
 import br.com.motorfraude.rules.domain.InvalidRuleDefinitionException;
 import br.com.motorfraude.rules.domain.RuleStatus;

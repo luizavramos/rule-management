@@ -1,12 +1,12 @@
 package br.com.motorfraude.rules.infrastructure.config;
 
-import br.com.motorfraude.rules.adapters.out.kernel.KernelRuleValidator;
-import br.com.motorfraude.rules.application.port.out.AuditLog;
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore;
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
-import br.com.motorfraude.rules.application.port.out.RuleSetRepository;
-import br.com.motorfraude.rules.application.port.out.RuleValidator;
-import br.com.motorfraude.rules.application.port.out.UnitOfWork;
+import br.com.motorfraude.rules.adapters.gateway.kernel.KernelRuleValidator;
+import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
+import br.com.motorfraude.rules.application.gateway.RuleValidator;
+import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import br.com.motorfraude.rules.application.usecase.ActivateRule;
 import br.com.motorfraude.rules.application.usecase.CreateRule;
 import br.com.motorfraude.rules.application.usecase.CreateRuleVersion;

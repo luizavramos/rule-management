@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.UnitOfWork;
+import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
 

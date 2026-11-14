@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.application;
 
-import br.com.motorfraude.rules.application.port.out.RuleValidator.SetIssue;
+import br.com.motorfraude.rules.application.gateway.RuleValidator.SetIssue;
 import java.util.List;
 
 /** O conjunto resultante não compila, então nada é publicado (vira 422). */

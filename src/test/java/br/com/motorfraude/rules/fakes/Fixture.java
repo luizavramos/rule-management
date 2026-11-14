@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.RuleValidator;
+import br.com.motorfraude.rules.application.gateway.RuleValidator;
 import br.com.motorfraude.rules.application.usecase.ActivateRule;
 import br.com.motorfraude.rules.application.usecase.CreateRule;
 import br.com.motorfraude.rules.application.usecase.CreateRuleVersion;

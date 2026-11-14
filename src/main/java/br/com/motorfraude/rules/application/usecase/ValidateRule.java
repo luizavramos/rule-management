@@ -1,7 +1,7 @@
 package br.com.motorfraude.rules.application.usecase;
 
-import br.com.motorfraude.rules.application.port.out.RuleValidator;
-import br.com.motorfraude.rules.application.port.out.RuleValidator.TestCase;
+import br.com.motorfraude.rules.application.gateway.RuleValidator;
+import br.com.motorfraude.rules.application.gateway.RuleValidator.TestCase;
 import br.com.motorfraude.rules.domain.InvalidRuleDefinitionException;
 import java.time.Instant;
 import java.util.List;

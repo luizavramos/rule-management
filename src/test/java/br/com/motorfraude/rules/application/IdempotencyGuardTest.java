@@ -3,7 +3,7 @@ package br.com.motorfraude.rules.application;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import br.com.motorfraude.commons.time.MutableClock;
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore.StoredResponse;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore.StoredResponse;
 import br.com.motorfraude.rules.application.usecase.IdempotencyGuard;
 import br.com.motorfraude.rules.application.usecase.IdempotencyGuard.Begin;
 import br.com.motorfraude.rules.fakes.InMemoryIdempotencyStore;

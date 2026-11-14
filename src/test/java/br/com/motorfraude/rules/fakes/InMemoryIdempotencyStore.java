@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;

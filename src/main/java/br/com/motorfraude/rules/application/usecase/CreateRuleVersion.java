@@ -2,10 +2,10 @@ package br.com.motorfraude.rules.application.usecase;
 
 import br.com.motorfraude.rules.application.RuleInvalidException;
 import br.com.motorfraude.rules.application.RuleNotFoundException;
-import br.com.motorfraude.rules.application.port.out.AuditLog;
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
-import br.com.motorfraude.rules.application.port.out.RuleValidator;
-import br.com.motorfraude.rules.application.port.out.UnitOfWork;
+import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleValidator;
+import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import br.com.motorfraude.rules.domain.AuditEntry;
 import br.com.motorfraude.rules.domain.RuleVersion;
 import java.time.Clock;

@@ -1,7 +1,7 @@
 package br.com.motorfraude.rules.application.usecase;
 
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore;
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore.StoredResponse;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore.StoredResponse;
 import java.time.Clock;
 import java.time.Duration;
 

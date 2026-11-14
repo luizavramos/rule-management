@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.infrastructure.security;
 
-import br.com.motorfraude.rules.adapters.in.rest.IdempotencyFilter;
+import br.com.motorfraude.rules.adapters.controller.IdempotencyFilter;
 import br.com.motorfraude.rules.application.usecase.IdempotencyGuard;
 import java.io.IOException;
 import java.util.LinkedHashMap;

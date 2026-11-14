@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.Rule;
 import br.com.motorfraude.rules.domain.RuleVersion;
 import java.util.ArrayList;

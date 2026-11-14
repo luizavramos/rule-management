@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.RuleSetRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.domain.RuleSet;
 import java.util.Comparator;
 import java.util.List;

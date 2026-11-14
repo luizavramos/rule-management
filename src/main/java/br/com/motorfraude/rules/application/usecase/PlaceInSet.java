@@ -1,7 +1,7 @@
 package br.com.motorfraude.rules.application.usecase;
 
 import br.com.motorfraude.rules.application.RuleNotFoundException;
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.RuleSet;
 import br.com.motorfraude.rules.domain.RuleSetItem;
 import br.com.motorfraude.rules.domain.RuleStatus;

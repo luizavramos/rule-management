@@ -1,8 +1,8 @@
 package br.com.motorfraude.rules.application.usecase;
 
 import br.com.motorfraude.rules.application.RuleNotFoundException;
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
-import br.com.motorfraude.rules.application.port.out.RuleSetRepository;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import java.util.Optional;
 import java.util.OptionalLong;
 

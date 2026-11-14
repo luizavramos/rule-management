@@ -1,15 +1,15 @@
 package br.com.motorfraude.rules.infrastructure.config;
 
-import br.com.motorfraude.rules.adapters.out.postgres.PostgresAuditLog;
-import br.com.motorfraude.rules.adapters.out.postgres.PostgresIdempotencyStore;
-import br.com.motorfraude.rules.adapters.out.postgres.PostgresRuleRepository;
-import br.com.motorfraude.rules.adapters.out.postgres.PostgresRuleSetRepository;
-import br.com.motorfraude.rules.adapters.out.postgres.TransactionalUnitOfWork;
-import br.com.motorfraude.rules.application.port.out.AuditLog;
-import br.com.motorfraude.rules.application.port.out.IdempotencyStore;
-import br.com.motorfraude.rules.application.port.out.RuleRepository;
-import br.com.motorfraude.rules.application.port.out.RuleSetRepository;
-import br.com.motorfraude.rules.application.port.out.UnitOfWork;
+import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresAuditLog;
+import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresIdempotencyStore;
+import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresRuleRepository;
+import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresRuleSetRepository;
+import br.com.motorfraude.rules.adapters.gateway.postgres.TransactionalUnitOfWork;
+import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
+import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
+import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;

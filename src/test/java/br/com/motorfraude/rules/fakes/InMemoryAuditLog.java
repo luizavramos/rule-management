@@ -1,6 +1,6 @@
 package br.com.motorfraude.rules.fakes;
 
-import br.com.motorfraude.rules.application.port.out.AuditLog;
+import br.com.motorfraude.rules.application.gateway.AuditLog;
 import br.com.motorfraude.rules.domain.AuditEntry;
 import java.util.ArrayList;
 import java.util.Collections;
