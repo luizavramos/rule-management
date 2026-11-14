@@ -5,6 +5,7 @@ import br.com.motorfraude.rules.domain.RuleSet;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /** Fake em memória de {@link RuleSetRepository}. Recusa versão repetida, como a chave primária do banco. */
@@ -15,6 +16,11 @@ public final class InMemoryRuleSetRepository implements RuleSetRepository {
     @Override
     public Optional<RuleSet> findActive() {
         return sets.stream().max(Comparator.comparingLong(RuleSet::version));
+    }
+
+    @Override
+    public OptionalLong activeVersion() {
+        return sets.stream().mapToLong(RuleSet::version).max();
     }
 
     @Override

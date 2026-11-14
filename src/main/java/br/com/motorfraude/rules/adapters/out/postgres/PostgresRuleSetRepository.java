@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalLong;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
 /** Conjuntos publicados no Postgres: só inserção; o conjunto ativo é o de maior versão. */
@@ -25,6 +26,12 @@ public final class PostgresRuleSetRepository implements RuleSetRepository {
     @Override
     public Optional<RuleSet> findActive() {
         return jdbc.sql(HEADER + " order by version desc limit 1").query(this::ruleSet).optional();
+    }
+
+    @Override
+    public OptionalLong activeVersion() {
+        Long version = jdbc.sql("select max(version) from rule_sets").query(Long.class).single();
+        return version == null ? OptionalLong.empty() : OptionalLong.of(version);
     }
 
     @Override

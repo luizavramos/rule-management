@@ -1,0 +1,26 @@
+package br.com.motorfraude.rules.adapters.in.rest;
+
+import br.com.motorfraude.rules.adapters.in.rest.ApiModels.RuleSetResponse;
+import br.com.motorfraude.rules.adapters.in.rest.ApiModels.ScoringRequest;
+import br.com.motorfraude.rules.application.usecase.UpdateScoring;
+import java.security.Principal;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+/** Faixas de severidade: mudar o número publica um conjunto novo, sem mexer em nenhuma expressão. */
+@RestController
+public class ScoringController {
+
+    private final UpdateScoring updateScoring;
+
+    public ScoringController(UpdateScoring updateScoring) {
+        this.updateScoring = updateScoring;
+    }
+
+    @PutMapping("/v1/scoring")
+    public RuleSetResponse update(@RequestBody ScoringRequest request, Principal principal) {
+        request.requireBoth();
+        return RuleSetResponse.of(updateScoring.execute(principal.getName(), request.mediumThreshold(), request.highThreshold()));
+    }
+}

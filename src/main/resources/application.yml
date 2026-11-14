@@ -1,0 +1,44 @@
+# Valores locais (spec 002, plan §2). Em produção, tudo isto vem de variáveis de ambiente.
+spring:
+  application:
+    name: rule-management
+  threads:
+    virtual:
+      enabled: true
+  main:
+    banner-mode: off
+  datasource:
+    url: ${RULES_DB_URL:jdbc:postgresql://localhost:5432/rules_db}
+    username: ${RULES_DB_USER:motorfraude}
+    password: ${RULES_DB_PASSWORD:motorfraude}
+
+server:
+  port: 8082
+
+rules:
+  security:
+    # Usuários locais em memória (FR-009). Em produção, OIDC via ALB [DOC]. Troque as senhas por variáveis de ambiente.
+    users:
+      - name: analista
+        password: ${RULES_ANALISTA_PASSWORD:analista-local}
+        roles: RULE_AUTHOR
+      - name: coordenador
+        password: ${RULES_COORDENADOR_PASSWORD:coordenador-local}
+        roles: RULE_AUTHOR,RULE_APPROVER
+      - name: motor
+        password: ${RULES_MOTOR_PASSWORD:motor-local}
+        roles: RULE_READER
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-components: always
+  metrics:
+    tags:
+      service: rule-management
