@@ -3,6 +3,7 @@ package br.com.motorfraude.rules.application.usecase;
 import br.com.motorfraude.rules.application.RuleInvalidException;
 import br.com.motorfraude.rules.application.RuleNotFoundException;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
 import br.com.motorfraude.rules.application.gateway.UnitOfWork;
@@ -17,16 +18,28 @@ public final class CreateRuleVersion {
     private final RuleValidator validator;
     private final UnitOfWork unitOfWork;
     private final Clock clock;
+    private final RuleMetrics metrics;
 
-    public CreateRuleVersion(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock) {
+    public CreateRuleVersion(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock,
+            RuleMetrics metrics) {
         this.rules = rules;
         this.audit = audit;
         this.validator = validator;
         this.unitOfWork = unitOfWork;
         this.clock = clock;
+        this.metrics = metrics;
     }
 
     public RuleVersion execute(String actor, String ruleId, RuleContent content) {
+        try {
+            return create(actor, ruleId, content);
+        } catch (RuleInvalidException e) {
+            metrics.compilationFailed("rule");
+            throw e;
+        }
+    }
+
+    private RuleVersion create(String actor, String ruleId, RuleContent content) {
         return unitOfWork.serializable(() -> {
             rules.findRule(ruleId).orElseThrow(() -> RuleNotFoundException.rule(ruleId));
             var now = clock.instant();

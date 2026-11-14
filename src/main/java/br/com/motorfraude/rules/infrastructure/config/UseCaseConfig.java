@@ -3,6 +3,7 @@ package br.com.motorfraude.rules.infrastructure.config;
 import br.com.motorfraude.rules.adapters.gateway.kernel.KernelRuleValidator;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
 import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
+import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
@@ -39,18 +40,20 @@ public class UseCaseConfig {
 
     @Bean
     RuleSetPublisher ruleSetPublisher(RuleRepository rules, RuleSetRepository ruleSets, AuditLog audit, RuleValidator validator,
-            UnitOfWork unitOfWork, Clock clock) {
-        return new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock);
+            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics) {
+        return new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock, metrics);
     }
 
     @Bean
-    CreateRule createRule(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock) {
-        return new CreateRule(rules, audit, validator, unitOfWork, clock);
+    CreateRule createRule(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock,
+            RuleMetrics metrics) {
+        return new CreateRule(rules, audit, validator, unitOfWork, clock, metrics);
     }
 
     @Bean
-    CreateRuleVersion createRuleVersion(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock) {
-        return new CreateRuleVersion(rules, audit, validator, unitOfWork, clock);
+    CreateRuleVersion createRuleVersion(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock,
+            RuleMetrics metrics) {
+        return new CreateRuleVersion(rules, audit, validator, unitOfWork, clock, metrics);
     }
 
     @Bean

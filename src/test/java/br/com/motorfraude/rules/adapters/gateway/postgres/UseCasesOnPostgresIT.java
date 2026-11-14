@@ -37,7 +37,7 @@ class UseCasesOnPostgresIT extends PostgresSupport {
     private final TransactionalUnitOfWork unitOfWork = new TransactionalUnitOfWork(transactionManager);
 
     private RuleSetPublisher publisher(AuditLog auditLog) {
-        return new RuleSetPublisher(rules, ruleSets, auditLog, validator, unitOfWork, clock);
+        return new RuleSetPublisher(rules, ruleSets, auditLog, validator, unitOfWork, clock, new br.com.motorfraude.rules.fakes.RecordingRuleMetrics());
     }
 
     private static RuleContent content(String expression) {
@@ -45,7 +45,7 @@ class UseCasesOnPostgresIT extends PostgresSupport {
     }
 
     private CreateRule createRule(AuditLog auditLog) {
-        return new CreateRule(rules, auditLog, validator, unitOfWork, clock);
+        return new CreateRule(rules, auditLog, validator, unitOfWork, clock, new br.com.motorfraude.rules.fakes.RecordingRuleMetrics());
     }
 
     @Test

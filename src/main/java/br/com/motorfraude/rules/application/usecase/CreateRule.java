@@ -3,6 +3,7 @@ package br.com.motorfraude.rules.application.usecase;
 import br.com.motorfraude.rules.application.RuleAlreadyExistsException;
 import br.com.motorfraude.rules.application.RuleInvalidException;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
 import br.com.motorfraude.rules.application.gateway.UnitOfWork;
@@ -18,13 +19,16 @@ public final class CreateRule {
     private final RuleValidator validator;
     private final UnitOfWork unitOfWork;
     private final Clock clock;
+    private final RuleMetrics metrics;
 
-    public CreateRule(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock) {
+    public CreateRule(RuleRepository rules, AuditLog audit, RuleValidator validator, UnitOfWork unitOfWork, Clock clock,
+            RuleMetrics metrics) {
         this.rules = rules;
         this.audit = audit;
         this.validator = validator;
         this.unitOfWork = unitOfWork;
         this.clock = clock;
+        this.metrics = metrics;
     }
 
     public RuleVersion execute(String actor, String ruleId, RuleContent content) {
@@ -32,6 +36,7 @@ public final class CreateRule {
         RuleVersion draft = content.toDraft(ruleId, 1, actor, now);
         var errors = validator.validate(draft);
         if (!errors.isEmpty()) {
+            metrics.compilationFailed("rule");
             throw new RuleInvalidException(errors);
         }
         return unitOfWork.serializable(() -> {

@@ -3,6 +3,7 @@ package br.com.motorfraude.rules.application.usecase;
 import br.com.motorfraude.rules.application.RuleNotFoundException;
 import br.com.motorfraude.rules.application.RuleSetInvalidException;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
+import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
@@ -35,18 +36,34 @@ public final class RuleSetPublisher {
     private final RuleValidator validator;
     private final UnitOfWork unitOfWork;
     private final Clock clock;
+    private final RuleMetrics metrics;
 
     public RuleSetPublisher(RuleRepository rules, RuleSetRepository ruleSets, AuditLog audit, RuleValidator validator,
-            UnitOfWork unitOfWork, Clock clock) {
+            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics) {
         this.rules = rules;
         this.ruleSets = ruleSets;
         this.audit = audit;
         this.validator = validator;
         this.unitOfWork = unitOfWork;
         this.clock = clock;
+        this.metrics = metrics;
     }
 
+    private record Published(RuleSet ruleSet, String action) {}
+
     public RuleSet publish(String actor, Mutation mutation) {
+        Published result;
+        try {
+            result = transaction(actor, mutation);
+        } catch (RuleSetInvalidException e) {
+            metrics.compilationFailed("rule-set");
+            throw e;
+        }
+        metrics.published(result.action());
+        return result.ruleSet();
+    }
+
+    private Published transaction(String actor, Mutation mutation) {
         return unitOfWork.serializable(() -> {
             var now = clock.instant();
             var current = ruleSets.findActive().orElseGet(() -> new RuleSet(0, now, "system", DEFAULT_SCORING, List.of()));
@@ -79,7 +96,7 @@ public final class RuleSetPublisher {
             var published = new RuleSet(current.version() + 1, now, actor, change.scoring(), items);
             ruleSets.save(published);
             audit.append(new AuditEntry(actor, change.action(), change.entity(), AuditMaps.of(current), AuditMaps.of(published), now));
-            return published;
+            return new Published(published, change.action());
         });
     }
 

@@ -27,6 +27,7 @@ public final class Fixture {
     public final InMemoryRuleSetRepository ruleSets = new InMemoryRuleSetRepository();
     public final InMemoryAuditLog audit = new InMemoryAuditLog();
     public final LockUnitOfWork unitOfWork = new LockUnitOfWork();
+    public final RecordingRuleMetrics metrics = new RecordingRuleMetrics();
     public final RuleValidator validator;
 
     public final RuleSetPublisher publisher;
@@ -46,9 +47,9 @@ public final class Fixture {
 
     public Fixture(RuleValidator validator) {
         this.validator = validator;
-        this.publisher = new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock);
-        this.createRule = new CreateRule(rules, audit, validator, unitOfWork, clock);
-        this.createRuleVersion = new CreateRuleVersion(rules, audit, validator, unitOfWork, clock);
+        this.publisher = new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock, metrics);
+        this.createRule = new CreateRule(rules, audit, validator, unitOfWork, clock, metrics);
+        this.createRuleVersion = new CreateRuleVersion(rules, audit, validator, unitOfWork, clock, metrics);
         this.validateRule = new ValidateRule(validator);
         this.activateRule = new ActivateRule(rules, publisher);
         this.shadowRule = new ShadowRule(rules, publisher);
