@@ -5,6 +5,7 @@ import br.com.motorfraude.rules.application.gateway.AuditLog;
 import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
 import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetOutbox;
 import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
 import br.com.motorfraude.rules.application.gateway.UnitOfWork;
@@ -40,8 +41,8 @@ public class UseCaseConfig {
 
     @Bean
     RuleSetPublisher ruleSetPublisher(RuleRepository rules, RuleSetRepository ruleSets, AuditLog audit, RuleValidator validator,
-            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics) {
-        return new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock, metrics);
+            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics, RuleSetOutbox outbox) {
+        return new RuleSetPublisher(rules, ruleSets, audit, validator, unitOfWork, clock, metrics, outbox);
     }
 
     @Bean

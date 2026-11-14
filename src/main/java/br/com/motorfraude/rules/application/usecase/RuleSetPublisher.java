@@ -5,6 +5,7 @@ import br.com.motorfraude.rules.application.RuleSetInvalidException;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
 import br.com.motorfraude.rules.application.gateway.RuleMetrics;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetOutbox;
 import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.application.gateway.RuleValidator;
 import br.com.motorfraude.rules.application.gateway.UnitOfWork;
@@ -37,9 +38,11 @@ public final class RuleSetPublisher {
     private final UnitOfWork unitOfWork;
     private final Clock clock;
     private final RuleMetrics metrics;
+    private final RuleSetOutbox outbox;
 
     public RuleSetPublisher(RuleRepository rules, RuleSetRepository ruleSets, AuditLog audit, RuleValidator validator,
-            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics) {
+            UnitOfWork unitOfWork, Clock clock, RuleMetrics metrics, RuleSetOutbox outbox) {
+        this.outbox = outbox;
         this.rules = rules;
         this.ruleSets = ruleSets;
         this.audit = audit;
@@ -95,6 +98,7 @@ public final class RuleSetPublisher {
             change.updatedVersions().forEach(rules::saveVersion);
             var published = new RuleSet(current.version() + 1, now, actor, change.scoring(), items);
             ruleSets.save(published);
+            outbox.append(new ActiveRuleSet(published, List.copyOf(effective)));
             audit.append(new AuditEntry(actor, change.action(), change.entity(), AuditMaps.of(current), AuditMaps.of(published), now));
             return new Published(published, change.action());
         });

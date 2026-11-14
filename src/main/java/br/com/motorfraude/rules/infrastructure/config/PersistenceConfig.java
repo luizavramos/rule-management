@@ -3,11 +3,13 @@ package br.com.motorfraude.rules.infrastructure.config;
 import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresAuditLog;
 import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresIdempotencyStore;
 import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresRuleRepository;
+import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresRuleSetOutbox;
 import br.com.motorfraude.rules.adapters.gateway.postgres.PostgresRuleSetRepository;
 import br.com.motorfraude.rules.adapters.gateway.postgres.TransactionalUnitOfWork;
 import br.com.motorfraude.rules.application.gateway.AuditLog;
 import br.com.motorfraude.rules.application.gateway.IdempotencyStore;
 import br.com.motorfraude.rules.application.gateway.RuleRepository;
+import br.com.motorfraude.rules.application.gateway.RuleSetOutbox;
 import br.com.motorfraude.rules.application.gateway.RuleSetRepository;
 import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import javax.sql.DataSource;
@@ -39,6 +41,11 @@ public class PersistenceConfig {
     @Bean
     AuditLog auditLog(JdbcClient jdbc, JsonMapper json, Flyway flyway) {
         return new PostgresAuditLog(jdbc, json);
+    }
+
+    @Bean
+    RuleSetOutbox ruleSetOutbox(JdbcClient jdbc, JsonMapper json, Flyway flyway) {
+        return new PostgresRuleSetOutbox(jdbc, json);
     }
 
     @Bean
