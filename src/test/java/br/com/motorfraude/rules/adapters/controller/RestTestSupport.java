@@ -12,10 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-/** Controllers com os casos de uso reais, repositórios em memória e o validador real (CEL), sem subir o Spring. */
 abstract class RestTestSupport {
 
-    /** O corpo de uma regra válida: o R07 do plano (limite de transações em 5 minutos). */
     protected static final String RULE_BODY = """
             {
               "ruleId": "R07",
@@ -59,7 +57,6 @@ abstract class RestTestSupport {
         return put(path).contentType(MediaType.APPLICATION_JSON).content(body);
     }
 
-    /** Cria a R07 como analista e a deixa em DRAFT. */
     protected void createRule() {
         fixture.createRule.execute("analista", "R07", new br.com.motorfraude.rules.application.usecase.RuleContent(
                 "features.count5m > params.maxCount", java.util.Map.of("maxCount", 5),

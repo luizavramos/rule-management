@@ -26,11 +26,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 import tools.jackson.databind.json.JsonMapper;
 
-/**
- * {@code Idempotency-Key} nos POST e PUT da API (plano 002, §4.4): a mesma chave não repete a ação e devolve a mesma
- * resposta. Roda depois da autenticação, porque a chave vale por usuário. Sem o header, a requisição passa direto.
- * Só respostas 2xx são guardadas; uma falha libera a chave para a origem corrigir e repetir.
- */
 public final class IdempotencyFilter extends OncePerRequestFilter {
 
     static final String HEADER = "Idempotency-Key";
@@ -138,7 +133,6 @@ public final class IdempotencyFilter extends OncePerRequestFilter {
         }
     }
 
-    /** O corpo já foi lido para o hash; os controllers precisam lê-lo de novo. */
     private static final class CachedBodyRequest extends HttpServletRequestWrapper {
         private final byte[] body;
 

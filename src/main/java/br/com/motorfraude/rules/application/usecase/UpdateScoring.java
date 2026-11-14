@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.domain.RuleSet;
 import br.com.motorfraude.rules.domain.Scoring;
 import java.util.List;
 
-/** Muda as faixas de severidade: publica o conjunto N+1 com o scoring novo e as mesmas regras. */
 public final class UpdateScoring {
 
     private final RuleSetPublisher publisher;

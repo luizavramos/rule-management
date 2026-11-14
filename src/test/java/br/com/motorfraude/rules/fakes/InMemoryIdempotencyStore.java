@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/** Fake em memória de {@link IdempotencyStore}, com a mesma regra de reserva do banco. */
 public final class InMemoryIdempotencyStore implements IdempotencyStore {
 
     private record Row(String requestHash, boolean completed, StoredResponse response, Instant createdAt) {}

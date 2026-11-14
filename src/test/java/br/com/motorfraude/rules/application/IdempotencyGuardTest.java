@@ -12,7 +12,6 @@ import java.time.Instant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Idempotency-Key — a máquina de estados: reservar, repetir a resposta, recusar chave reaproveitada, expirar. */
 class IdempotencyGuardTest {
 
     private static final StoredResponse RESPONSE = new StoredResponse(201, "application/json", "/v1/rules/R07/versions/1", "{\"ok\":true}");

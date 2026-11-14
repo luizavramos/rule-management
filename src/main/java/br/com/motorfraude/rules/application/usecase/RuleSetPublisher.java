@@ -18,19 +18,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Núcleo de toda mudança (plano 002, §4.2). Numa única transação serializável: lê o conjunto ativo, aplica a mudança,
- * compila tudo e, só se compilou, grava os status das versões, o conjunto N+1 e a auditoria. Se qualquer passo falhar,
- * nada é publicado.
- */
 public final class RuleSetPublisher {
 
     private static final Scoring DEFAULT_SCORING = new Scoring(40, 70);
 
-    /** A mudança pedida: itens e scoring do novo conjunto, e as versões cujo status muda. */
     public record Change(String action, String entity, List<RuleSetItem> items, Scoring scoring, List<RuleVersion> updatedVersions) {}
 
-    /** Calcula a mudança a partir do conjunto ativo; roda dentro da transação. */
     @FunctionalInterface
     public interface Mutation {
         Change apply(RuleSet current);

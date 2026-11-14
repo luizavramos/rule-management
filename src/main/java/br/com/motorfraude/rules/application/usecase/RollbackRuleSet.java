@@ -10,11 +10,6 @@ import br.com.motorfraude.rules.domain.RuleVersion;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-/**
- * Publica um conjunto novo (N+k) com o mesmo conteúdo do conjunto escolhido. O histórico não é apagado. O status das
- * versões acompanha: as que estavam no conjunto atual e não estão no escolhido ficam DISABLED; as do escolhido
- * voltam ao status que tinham nele. Quem aprovou a versão originalmente continua sendo o aprovador.
- */
 public final class RollbackRuleSet {
 
     private final RuleRepository rules;

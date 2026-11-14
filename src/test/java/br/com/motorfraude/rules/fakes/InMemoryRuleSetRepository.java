@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.OptionalLong;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/** Fake em memória de {@link RuleSetRepository}. Recusa versão repetida, como a chave primária do banco. */
 public final class InMemoryRuleSetRepository implements RuleSetRepository {
 
     private final List<RuleSet> sets = new CopyOnWriteArrayList<>();

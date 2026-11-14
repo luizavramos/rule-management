@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Validador sobre o rules-kernel: a mesma linguagem, o mesmo compilador e o mesmo avaliador que o motor usa, para os
- * dois nunca discordarem sobre o que é uma regra válida.
- */
 public final class KernelRuleValidator implements RuleValidator {
 
     private final RuleCompiler compiler = new RuleCompiler();

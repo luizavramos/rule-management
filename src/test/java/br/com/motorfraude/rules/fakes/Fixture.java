@@ -18,7 +18,6 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.Map;
 
-/** Monta os casos de uso com fakes em memória e um relógio fixo; o validador pode ser trocado pelo real. */
 public final class Fixture {
 
     public static final Instant NOW = Instant.parse("2026-11-14T12:00:00Z");
@@ -63,7 +62,6 @@ public final class Fixture {
         return new RuleContent(expression, Map.of("maxCount", 5), Map.of(), 25, "motivo");
     }
 
-    /** Cria a regra e a ativa, devolvendo o conjunto publicado. */
     public RuleSet createAndActivate(String ruleId, String expression) {
         createRule.execute("analista", ruleId, content(expression));
         return activateRule.execute("coord", ruleId, 1);

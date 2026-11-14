@@ -10,10 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-/**
- * Uma versão de regra. O conteúdo é imutável: mudar a expressão, os parâmetros ou o peso cria outra versão. Só o
- * status muda (por {@link #transitionTo}, que devolve uma nova instância). Os limites são os do contrato rule-set.v1.
- */
 public record RuleVersion(String ruleId, int version, String expression, Map<String, Object> params,
         Map<String, Map<String, Object>> paramOverrides, int weight, String reasonTemplate, RuleStatus status,
         String author, String approvedBy, Instant createdAt) {

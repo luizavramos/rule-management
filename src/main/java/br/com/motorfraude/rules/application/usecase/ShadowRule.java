@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.RuleSet;
 import br.com.motorfraude.rules.domain.RuleStatus;
 
-/** Modo sombra: a versão entra no conjunto como SHADOW, o motor avalia e registra, mas ela não soma pontos. */
 public final class ShadowRule {
 
     private final RuleRepository rules;

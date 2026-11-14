@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/** Corpos de resposta da API: o que o domínio devolve, no formato que sai pelo HTTP. Datas saem como texto ISO-8601 em UTC. */
 public final class ApiResponses {
 
     private ApiResponses() {}
@@ -38,7 +37,6 @@ public final class ApiResponses {
 
     public record PublishedItem(String ruleId, int ruleVersion, String status) {}
 
-    /** Resultado de uma publicação: o conjunto novo, só com as referências (o conteúdo completo sai em GET /active). */
     public record RuleSetResponse(long version, String publishedAt, String publishedBy, ScoringBody scoring, List<PublishedItem> rules) {
 
         public static RuleSetResponse of(RuleSet set) {
@@ -58,7 +56,6 @@ public final class ApiResponses {
     public record ActiveRule(String ruleId, int version, String status, String expression, Map<String, Object> params,
             Map<String, Map<String, Object>> paramOverrides, int weight, String reasonTemplate) {}
 
-    /** O corpo do contrato rule-set.v1 que o motor lê: o status vem do item do conjunto, não da versão da regra. */
     public record ActiveRuleSetResponse(long version, String publishedAt, ScoringBody scoring, List<ActiveRule> rules) {
 
         public static ActiveRuleSetResponse of(ActiveRuleSet active) {

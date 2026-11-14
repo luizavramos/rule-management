@@ -24,7 +24,6 @@ import java.time.Clock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Monta os casos de uso a partir das portas. O relógio é injetado aqui; as camadas internas nunca o chamam direto. */
 @Configuration
 public class UseCaseConfig {
 

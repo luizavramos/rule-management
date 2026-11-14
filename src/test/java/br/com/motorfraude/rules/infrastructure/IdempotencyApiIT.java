@@ -20,7 +20,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 
-/** Idempotency-Key no serviço inteiro (segurança, filtro e Postgres reais), inclusive com requisições simultâneas. */
 @SpringBootTest(classes = RuleManagementApplication.class)
 @AutoConfigureMockMvc
 class IdempotencyApiIT {

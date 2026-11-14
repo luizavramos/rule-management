@@ -8,7 +8,6 @@ import br.com.motorfraude.rules.domain.RuleStatus;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Coloca uma versão de regra no conjunto como ACTIVE ou SHADOW; se outra versão da mesma regra estava lá, desliga-a. */
 final class PlaceInSet {
 
     private PlaceInSet() {}

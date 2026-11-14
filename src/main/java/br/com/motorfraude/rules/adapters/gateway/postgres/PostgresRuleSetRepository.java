@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.OptionalLong;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
-/** Conjuntos publicados no Postgres: só inserção; o conjunto ativo é o de maior versão. */
 public final class PostgresRuleSetRepository implements RuleSetRepository {
 
     private static final String HEADER = "select version, published_at, published_by, medium_threshold, high_threshold from rule_sets";

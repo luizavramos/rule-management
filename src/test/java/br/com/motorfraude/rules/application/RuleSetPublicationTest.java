@@ -18,7 +18,6 @@ import java.util.concurrent.Future;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T212 — ativar, sombra, desligar, rollback e scoring: cada mudança publica um conjunto novo (H2, H4, H5). */
 class RuleSetPublicationTest {
 
     private final Fixture f = new Fixture();
@@ -126,10 +125,10 @@ class RuleSetPublicationTest {
     @Test
     @DisplayName("rollback publica N+k com o mesmo conteúdo de N, sem apagar o histórico")
     void rollback() {
-        f.createAndActivate("R07", "a > 1");                                    // conjunto 1: R07
+        f.createAndActivate("R07", "a > 1");
         f.createRule.execute("analista", "R10", Fixture.content("b > 1"));
-        f.activateRule.execute("coord", "R10", 1);                              // conjunto 2: R07, R10
-        f.disableRule.execute("analista", "R07");                               // conjunto 3: R10
+        f.activateRule.execute("coord", "R10", 1);
+        f.disableRule.execute("analista", "R07");
 
         var set = f.rollbackRuleSet.execute("coord", 1);
 
@@ -180,7 +179,6 @@ class RuleSetPublicationTest {
     void compilacaoFalhaNaoPublica() {
         f.createAndActivate("R07", "a > 1");
         f.rules.saveVersion(f.createRuleVersion.execute("analista", "R07", Fixture.content("a > 2")));
-        // uma versão que o validador do conjunto recusa (nasce válida e foi alterada fora do fluxo, por exemplo por uma versão nova do kernel)
         f.rules.saveVersion(br.com.motorfraude.rules.domain.RuleVersion.draft("R07", 3, "INVALID", Map.of(), Map.of(), 10, "m", "analista", Fixture.NOW));
         int auditAntes = f.audit.all().size();
 

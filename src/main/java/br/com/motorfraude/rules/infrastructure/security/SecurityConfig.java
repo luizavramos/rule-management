@@ -25,7 +25,6 @@ import org.springframework.security.web.servlet.util.matcher.PathPatternRequestM
 import jakarta.servlet.http.HttpServletResponse;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Quem pode o quê (plano 002, §4.4). HTTP Basic sem sessão: é uma API para pessoas na demo e para o motor. */
 @Configuration
 public class SecurityConfig {
 
@@ -58,24 +57,18 @@ public class SecurityConfig {
                         .accessDeniedHandler((request, response, ex) -> problem(json, response, HttpStatus.FORBIDDEN,
                                 "Acesso negado", "Seu perfil não permite esta operação.")))
                 .authorizeHttpRequests(a -> a
-                        // Saúde e métricas sem login: o orquestrador e o Prometheus não têm credencial (rede interna).
                         .requestMatchers(path.matcher("/actuator/health/**"), path.matcher("/actuator/health"),
                                 path.matcher("/actuator/prometheus")).permitAll()
-                        // Leitura: qualquer perfil, inclusive o motor (conjunto ativo).
                         .requestMatchers(path.matcher(HttpMethod.GET, "/v1/rules"), path.matcher(HttpMethod.GET, "/v1/rules/{ruleId}"),
                                 path.matcher(HttpMethod.GET, "/v1/rule-sets/active")).hasAnyRole(AUTHOR, APPROVER, READER)
-                        // Quem ativa, reverte ou muda as faixas aprova: é o perfil APPROVER.
                         .requestMatchers(path.matcher(HttpMethod.POST, "/v1/rules/{ruleId}/versions/{version}:activate"),
                                 path.matcher(HttpMethod.POST, "/v1/rule-sets/{version}:rollback"),
                                 path.matcher(HttpMethod.PUT, "/v1/scoring")).hasRole(APPROVER)
-                        // Quem cria, valida, põe em sombra e desliga (kill switch) é o perfil AUTHOR.
                         .requestMatchers(path.matcher(HttpMethod.POST, "/v1/rules"), path.matcher(HttpMethod.POST, "/v1/rules:validate"),
                                 path.matcher(HttpMethod.POST, "/v1/rules/{ruleId}/versions"),
                                 path.matcher(HttpMethod.POST, "/v1/rules/{ruleId}/versions/{version}:shadow"),
                                 path.matcher(HttpMethod.POST, "/v1/rules/{ruleId}:disable")).hasRole(AUTHOR)
                         .anyRequest().denyAll())
-                // Depois da autorização: a Idempotency-Key vale por usuário e uma requisição negada não gasta a chave.
-                // O filtro não é um @Bean de propósito, para o Boot não registrá-lo uma segunda vez fora da cadeia.
                 .addFilterAfter(new IdempotencyFilter(idempotencyGuard, json), AuthorizationFilter.class);
         return http.build();
     }

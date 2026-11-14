@@ -20,10 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-/**
- * Erros em Problem Details (RFC 9457), com a lista de problemas em {@code errors}. O corpo é um mapa montado à mão,
- * como no receiver. Erro inesperado vira 500 sem detalhe: o motivo vai para o log, não para quem chamou.
- */
 @RestControllerAdvice
 public class RestExceptionHandler {
 

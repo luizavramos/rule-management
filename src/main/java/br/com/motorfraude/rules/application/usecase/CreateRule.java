@@ -11,7 +11,6 @@ import br.com.motorfraude.rules.domain.Rule;
 import br.com.motorfraude.rules.domain.RuleVersion;
 import java.time.Clock;
 
-/** Cria a regra e a versão 1 em DRAFT. Expressão que não compila é recusada antes de gravar qualquer coisa. */
 public final class CreateRule {
 
     private final RuleRepository rules;

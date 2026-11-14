@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Idempotency-Key nos POSTs e PUTs: a mesma chave não repete a ação, e devolve a mesma resposta. */
 class IdempotencyFilterTest extends RestTestSupport {
 
     private final InMemoryIdempotencyStore store = new InMemoryIdempotencyStore();
@@ -135,13 +134,11 @@ class IdempotencyFilterTest extends RestTestSupport {
     @Test
     @DisplayName("chave em andamento: 409 com Retry-After; chave inválida: 400; GET ignora a chave")
     void casosDeBorda() throws Exception {
-        // reserva a chave como se outra requisição ainda estivesse executando
         store.claim("analista", "andando", "qualquer", fixture.clock.instant(), fixture.clock.instant().minusSeconds(86400), fixture.clock.instant().minusSeconds(60));
         mvcWithKeys.perform(keyed(asAuthor(postJson("/v1/rules", RULE_BODY)), "andando"))
                 .andExpect(status().isUnprocessableEntity());
 
         var body = RULE_BODY;
-        // mesma requisição (mesmo hash) enquanto outra executa
         var hash = IdempotencyFilter.hash("POST", "/v1/rules", null, body.getBytes(java.nio.charset.StandardCharsets.UTF_8));
         store.claim("analista", "andando2", hash, fixture.clock.instant(), fixture.clock.instant().minusSeconds(86400), fixture.clock.instant().minusSeconds(60));
         mvcWithKeys.perform(keyed(asAuthor(postJson("/v1/rules", body)), "andando2"))

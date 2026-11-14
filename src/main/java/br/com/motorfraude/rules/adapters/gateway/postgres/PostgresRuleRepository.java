@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Regras e versões no Postgres. O banco impede mudar o conteúdo de uma versão (gatilho), só o status e o aprovador. */
 public final class PostgresRuleRepository implements RuleRepository {
 
     private static final TypeReference<Map<String, Object>> PARAMS = new TypeReference<>() {};
@@ -56,7 +55,6 @@ public final class PostgresRuleRepository implements RuleRepository {
 
     @Override
     public void saveVersion(RuleVersion v) {
-        // No conflito atualiza todas as colunas: se o conteúdo mudou, o gatilho do banco recusa (versão imutável).
         jdbc.sql("""
                 insert into rule_versions (rule_id, version, expression, params, param_overrides, weight, reason_template,
                                            status, author, approved_by, created_at)

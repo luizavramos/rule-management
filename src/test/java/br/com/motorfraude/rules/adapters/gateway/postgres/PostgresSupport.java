@@ -9,7 +9,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Base dos testes de integração: um Postgres 16 real (o mesmo do compose), com as migrações aplicadas do zero a cada teste. */
 abstract class PostgresSupport {
 
     private static final PostgreSQLContainer POSTGRES = new PostgreSQLContainer("postgres:16.16");

@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-/** Fake em memória de {@link RuleRepository}. */
 public final class InMemoryRuleRepository implements RuleRepository {
 
     private final Map<String, Rule> rules = new ConcurrentHashMap<>();

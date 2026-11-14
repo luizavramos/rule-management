@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import tools.jackson.databind.json.JsonMapper;
 
-/** T217 e T219 — rollback, scoring e o conjunto ativo servido ao motor (ETag, 304 e schema rule-set.v1). */
 class RuleSetControllerTest extends RestTestSupport {
 
     private final JsonMapper json = JsonMapper.builder().build();
@@ -26,8 +25,8 @@ class RuleSetControllerTest extends RestTestSupport {
     @Test
     @DisplayName("H2.3: rollback publica N+k com o conteúdo de N e devolve 200")
     void rollback() throws Exception {
-        publicaR07();                                                    // conjunto 1: R07
-        fixture.disableRule.execute("analista", "R07");                  // conjunto 2: vazio
+        publicaR07();
+        fixture.disableRule.execute("analista", "R07");
 
         mvc.perform(asApprover(postJson("/v1/rule-sets/1:rollback", "")))
                 .andExpect(status().isOk())

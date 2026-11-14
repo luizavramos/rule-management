@@ -10,7 +10,6 @@ import br.com.motorfraude.rules.domain.AuditEntry;
 import br.com.motorfraude.rules.domain.RuleVersion;
 import java.time.Clock;
 
-/** Cria uma nova versão (DRAFT) de uma regra existente. As versões anteriores não mudam. */
 public final class CreateRuleVersion {
 
     private final RuleRepository rules;

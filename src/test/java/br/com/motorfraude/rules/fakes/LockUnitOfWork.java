@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.application.gateway.UnitOfWork;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
 
-/** Fake de {@link UnitOfWork}: um trinco global faz as transações serem de fato uma de cada vez. */
 public final class LockUnitOfWork implements UnitOfWork {
 
     private final ReentrantLock lock = new ReentrantLock();

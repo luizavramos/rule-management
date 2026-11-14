@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.RuleSet;
 import br.com.motorfraude.rules.domain.RuleStatus;
 
-/** Ativa uma versão: publica o conjunto N+1 com ela ACTIVE (e sem a versão anterior da mesma regra). */
 public final class ActivateRule {
 
     private final RuleRepository rules;

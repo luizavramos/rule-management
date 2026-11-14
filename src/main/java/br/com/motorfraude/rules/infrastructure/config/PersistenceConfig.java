@@ -18,7 +18,6 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.transaction.PlatformTransactionManager;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Liga as portas de saída aos adaptadores Postgres e aplica as migrações do Flyway ao subir. */
 @Configuration
 public class PersistenceConfig {
 

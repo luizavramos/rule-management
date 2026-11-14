@@ -10,10 +10,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 
-/**
- * Transação SERIALIZABLE com nova tentativa: duas publicações simultâneas conflitam, uma falha (SQLSTATE 40001 ou
- * deadlock) e roda de novo, então as versões saem em sequência, sem repetição nem buraco.
- */
 public final class TransactionalUnitOfWork implements UnitOfWork {
 
     private static final int MAX_ATTEMPTS = 40;
@@ -47,7 +43,6 @@ public final class TransactionalUnitOfWork implements UnitOfWork {
             if (t instanceof SQLException sql && ("40001".equals(sql.getSQLState()) || "40P01".equals(sql.getSQLState()))) {
                 return true;
             }
-            // Duas publicações calcularam a mesma versão: perdeu a corrida pela chave do conjunto.
             if (t instanceof DuplicateKeyException && String.valueOf(t.getMessage()).contains("rule_sets_pkey")) {
                 return true;
             }

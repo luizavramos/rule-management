@@ -27,7 +27,6 @@ import java.util.concurrent.Future;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T215 — os casos de uso sobre o Postgres real: publicação, atomicidade e 10 ativações simultâneas. */
 class UseCasesOnPostgresIT extends PostgresSupport {
 
     private final Clock clock = Clock.systemUTC();
@@ -114,7 +113,6 @@ class UseCasesOnPostgresIT extends PostgresSupport {
     @DisplayName("conjunto que não compila não publica nada no banco")
     void compilacaoFalha() {
         createRule(audit).execute("analista", "R20", content("features.count1m > params.maxCount"));
-        // versão que o validador do conjunto recusa, gravada fora do fluxo normal
         rules.saveVersion(RuleVersion.draft("R20", 2, "features.nada > 1", Map.of(), Map.of(), 10, "m", "analista", clock.instant()));
 
         assertThatThrownBy(() -> new ActivateRule(rules, publisher(audit)).execute("coord", "R20", 2))

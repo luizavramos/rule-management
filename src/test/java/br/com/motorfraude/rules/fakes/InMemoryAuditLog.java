@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/** Fake em memória de {@link AuditLog}. */
 public final class InMemoryAuditLog implements AuditLog {
 
     private final List<AuditEntry> entries = new CopyOnWriteArrayList<>();

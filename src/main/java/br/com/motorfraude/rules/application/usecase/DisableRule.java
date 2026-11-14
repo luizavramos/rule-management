@@ -6,7 +6,6 @@ import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.RuleSet;
 import java.util.List;
 
-/** Kill switch: publica o conjunto N+1 sem a regra e marca a versão que estava nele como DISABLED. */
 public final class DisableRule {
 
     private final RuleRepository rules;

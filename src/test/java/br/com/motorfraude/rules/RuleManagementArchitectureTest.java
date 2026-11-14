@@ -7,7 +7,6 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Regra de dependência da Clean Architecture (constituição I e VIII) aplicada ao rule-management. */
 class RuleManagementArchitectureTest {
 
     private static final String BASE = "br.com.motorfraude.rules";

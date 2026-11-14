@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/** Corpos de requisição da API. Campos obrigatórios que faltam viram 400, todos juntos. */
 final class ApiRequests {
 
     private ApiRequests() {}
 
-    /** Corpo de criar regra, criar versão e validar. {@code ruleId} só vale na criação; {@code testCases}, só na validação. */
     record RuleRequest(String ruleId, String expression, Map<String, Object> params,
             Map<String, Map<String, Object>> paramOverrides, Integer weight, String reasonTemplate,
             List<TestCaseRequest> testCases) {

@@ -24,10 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Regras e versões (plano 002, §4.4). Quem pode o quê é decidido pela segurança (papéis), não aqui; o ator de cada
- * mudança é o usuário autenticado.
- */
 @RestController
 public class RuleController {
 

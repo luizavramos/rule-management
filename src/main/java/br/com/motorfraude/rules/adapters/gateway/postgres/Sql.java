@@ -7,7 +7,6 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 
-/** Conversões de data e hora entre {@link Instant} e o {@code timestamptz} do Postgres (precisão de microssegundos). */
 final class Sql {
 
     private Sql() {}

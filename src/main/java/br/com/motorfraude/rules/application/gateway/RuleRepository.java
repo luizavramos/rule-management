@@ -5,7 +5,6 @@ import br.com.motorfraude.rules.domain.RuleVersion;
 import java.util.List;
 import java.util.Optional;
 
-/** Regras e suas versões. O conteúdo de uma versão nunca é alterado; só o status (por {@link #saveVersion}). */
 public interface RuleRepository {
 
     boolean insertRule(Rule rule);

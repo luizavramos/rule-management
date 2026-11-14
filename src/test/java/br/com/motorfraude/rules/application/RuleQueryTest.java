@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T217/T220 — consultas: listar regras, histórico de uma regra e o conjunto ativo com cache por versão. */
 class RuleQueryTest {
 
     private final Fixture f = new Fixture();
@@ -46,7 +45,6 @@ class RuleQueryTest {
         assertThatThrownBy(() -> getRule.execute("NAO")).isInstanceOf(RuleNotFoundException.class);
     }
 
-    /** Conta quantas vezes o conjunto inteiro foi lido; a pergunta barata (só a versão) não conta. */
     private static final class CountingRuleSets implements RuleSetRepository {
         private final RuleSetRepository delegate;
         final AtomicInteger fullReads = new AtomicInteger();

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
-/** T217 — criar, validar, ativar, sombra e desligar: códigos HTTP e Problem Details (RFC 9457). */
 class RuleControllerTest extends RestTestSupport {
 
     private static final MediaType PROBLEM = MediaType.valueOf("application/problem+json");

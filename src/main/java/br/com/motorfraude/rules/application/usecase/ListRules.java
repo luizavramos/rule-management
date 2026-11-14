@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.application.gateway.RuleRepository;
 import br.com.motorfraude.rules.domain.Rule;
 import java.util.List;
 
-/** Lista as regras, em ordem de id. */
 public final class ListRules {
 
     private final RuleRepository rules;

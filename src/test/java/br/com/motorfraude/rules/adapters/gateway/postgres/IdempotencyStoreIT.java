@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Idempotency-Key — o store no Postgres: reserva atômica, resposta guardada, expiração e liberação. */
 class IdempotencyStoreIT extends PostgresSupport {
 
     private static final Instant T0 = Instant.parse("2026-11-14T12:00:00Z");

@@ -7,7 +7,6 @@ import br.com.motorfraude.rules.adapters.gateway.kernel.KernelRuleValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T215 — migrações (V1, V2), restrições do banco e as 8 regras iniciais (SC-003 da spec 002). */
 class SchemaAndSeedIT extends PostgresSupport {
 
     private int count(String sql) {

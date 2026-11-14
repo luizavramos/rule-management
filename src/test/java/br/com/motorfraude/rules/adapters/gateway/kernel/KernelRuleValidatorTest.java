@@ -11,7 +11,6 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T211 — o validador real, sobre o rules-kernel: as mesmas mensagens e a mesma avaliação que o motor terá. */
 class KernelRuleValidatorTest {
 
     private final KernelRuleValidator validator = new KernelRuleValidator();

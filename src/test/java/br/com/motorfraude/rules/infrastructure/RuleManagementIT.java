@@ -32,10 +32,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import tools.jackson.databind.json.JsonMapper;
 
-/** T217–T220 — o serviço inteiro (Spring, segurança, Flyway e Postgres reais): papéis, seed servido e o roteiro da demo (SC-001). */
 @SpringBootTest(classes = RuleManagementApplication.class)
 @AutoConfigureMockMvc
-// O banco é reiniciado entre os testes; o cache do conjunto ativo é por versão (que só cresce em produção), então cada teste ganha um contexto novo.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class RuleManagementIT {
 

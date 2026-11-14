@@ -6,10 +6,6 @@ import br.com.motorfraude.rules.domain.Scoring;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Validador de mentira: expressão com "INVALID" não compila; num caso de teste, a regra dispara se a expressão contém
- * "HIT". Serve para testar os casos de uso sem o CEL (o validador real tem teste próprio).
- */
 public final class FakeRuleValidator implements RuleValidator {
 
     @Override

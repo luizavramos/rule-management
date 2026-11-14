@@ -16,7 +16,6 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T215 — os repositórios JDBC contra um Postgres real. */
 class RepositoriesIT extends PostgresSupport {
 
     private static final Instant T0 = Instant.parse("2026-11-14T12:00:00Z");

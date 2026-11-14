@@ -5,10 +5,6 @@ import java.time.Instant;
 import java.util.Optional;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
-/**
- * Respostas por Idempotency-Key no Postgres. A reserva é um único INSERT ... ON CONFLICT: o banco decide quem ganha
- * quando duas requisições chegam juntas, sem transação longa nem trava na aplicação.
- */
 public final class PostgresIdempotencyStore implements IdempotencyStore {
 
     private final JdbcClient jdbc;

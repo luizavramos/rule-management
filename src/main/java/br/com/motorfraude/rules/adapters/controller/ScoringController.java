@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Faixas de severidade: mudar o número publica um conjunto novo, sem mexer em nenhuma expressão. */
 @RestController
 public class ScoringController {
 

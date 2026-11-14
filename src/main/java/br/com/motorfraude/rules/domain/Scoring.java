@@ -2,7 +2,6 @@ package br.com.motorfraude.rules.domain;
 
 import java.util.List;
 
-/** Faixas de severidade: pontos >= high é ALTA; >= medium é MÉDIA. Exige 1 <= medium <= high. */
 public record Scoring(int mediumThreshold, int highThreshold) {
 
     public Scoring {

@@ -2,7 +2,6 @@ package br.com.motorfraude.rules.application;
 
 import java.util.List;
 
-/** A expressão da regra não compila (sintaxe, tipo ou complexidade). Vira 422 com os erros juntos. */
 public final class RuleInvalidException extends RuntimeException {
 
     private final transient List<String> errors;

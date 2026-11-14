@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/** Instantâneos (antes e depois) gravados na auditoria. Só tipos simples, para virarem JSON sem surpresa. */
 final class AuditMaps {
 
     private AuditMaps() {}

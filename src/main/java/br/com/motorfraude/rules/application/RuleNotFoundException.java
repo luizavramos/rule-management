@@ -1,6 +1,5 @@
 package br.com.motorfraude.rules.application;
 
-/** Regra, versão de regra ou conjunto inexistente (vira 404). */
 public final class RuleNotFoundException extends RuntimeException {
 
     public RuleNotFoundException(String message) {

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-/** T209 — transições de status e invariantes de uma versão de regra (imutável). */
 class RuleVersionTest {
 
     private static final Instant NOW = Instant.parse("2026-11-14T12:00:00Z");

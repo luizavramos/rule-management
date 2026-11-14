@@ -14,7 +14,6 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** Os casos de uso com o validador real (CEL): o roteiro da demo (SC-001) sem banco e sem HTTP. */
 class RuleLifecycleWithKernelTest {
 
     private final Fixture f = new Fixture(new KernelRuleValidator());

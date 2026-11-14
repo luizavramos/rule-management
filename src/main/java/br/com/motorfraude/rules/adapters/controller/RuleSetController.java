@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Conjuntos de regras: rollback e o conjunto ativo que o motor consulta a cada 30 s. O ETag é a versão do conjunto, e a
- * pergunta "mudou?" (If-None-Match) responde 304 lendo só o número da versão (SC-002).
- */
 @RestController
 public class RuleSetController {
 

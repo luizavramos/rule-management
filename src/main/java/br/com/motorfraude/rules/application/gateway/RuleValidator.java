@@ -5,7 +5,6 @@ import br.com.motorfraude.rules.domain.Scoring;
 import java.util.List;
 import java.util.Map;
 
-/** Valida regras com a mesma linguagem que o motor usa (implementado sobre o rules-kernel). */
 public interface RuleValidator {
 
     List<String> validate(RuleVersion version);

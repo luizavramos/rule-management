@@ -13,7 +13,6 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T212 — criar regra, criar nova versão e validar com casos de teste (H1). */
 class RuleAuthoringTest {
 
     private final Fixture f = new Fixture();

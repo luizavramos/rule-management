@@ -6,7 +6,6 @@ import br.com.motorfraude.rules.domain.InvalidRuleDefinitionException;
 import java.time.Instant;
 import java.util.List;
 
-/** Valida uma regra sem gravar nada: erros de compilação e o resultado de cada caso de teste. */
 public final class ValidateRule {
 
     private final RuleValidator validator;

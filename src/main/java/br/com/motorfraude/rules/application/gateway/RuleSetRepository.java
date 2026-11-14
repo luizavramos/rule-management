@@ -4,7 +4,6 @@ import br.com.motorfraude.rules.domain.RuleSet;
 import java.util.Optional;
 import java.util.OptionalLong;
 
-/** Conjuntos publicados. Nunca são alterados nem apagados: o histórico fica inteiro. */
 public interface RuleSetRepository {
 
     Optional<RuleSet> findActive();

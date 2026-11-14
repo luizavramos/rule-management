@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Auditoria no Postgres. A tabela é append-only (gatilho): aqui só há inserção e leitura. */
 public final class PostgresAuditLog implements AuditLog {
 
     private static final TypeReference<Map<String, Object>> SNAPSHOT = new TypeReference<>() {};
