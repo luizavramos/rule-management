@@ -127,7 +127,6 @@ public final class IdempotencyFilter extends OncePerRequestFilter {
         response.getWriter().write(json.writeValueAsString(body));
     }
 
-    /** Identifica a requisição: método, caminho, consulta e corpo. A mesma chave com outro hash é uso indevido. */
     static String hash(String method, String path, String query, byte[] body) {
         try {
             var digest = MessageDigest.getInstance("SHA-256");

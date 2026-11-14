@@ -54,7 +54,6 @@ public class RuleSetController {
         return "\"" + version + "\"";
     }
 
-    /** Aceita um ETag, uma lista separada por vírgula, o curinga e a forma fraca (W/"42"). Valor que não é número não casa. */
     private static boolean matches(String ifNoneMatch, long version) {
         if (ifNoneMatch == null) {
             return false;

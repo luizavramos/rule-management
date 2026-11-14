@@ -22,7 +22,6 @@ import tools.jackson.databind.json.JsonMapper;
 @Configuration
 public class PersistenceConfig {
 
-    /** Migra antes de tudo: o serviço só atende com o schema e o seed (as 8 regras) no lugar. */
     @Bean(initMethod = "migrate")
     Flyway flyway(DataSource dataSource) {
         return Flyway.configure().dataSource(dataSource).load();

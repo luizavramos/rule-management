@@ -8,7 +8,6 @@ import java.util.Map;
 public record RuleContent(String expression, Map<String, Object> params,
         Map<String, Map<String, Object>> paramOverrides, int weight, String reasonTemplate) {
 
-    /** Rascunho com este conteúdo; as invariantes do contrato são conferidas na construção. */
     RuleVersion toDraft(String ruleId, int version, String author, Instant createdAt) {
         return RuleVersion.draft(ruleId, version, expression, params, paramOverrides, weight, reasonTemplate, author, createdAt);
     }

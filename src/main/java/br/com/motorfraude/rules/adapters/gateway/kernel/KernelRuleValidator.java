@@ -71,7 +71,6 @@ public final class KernelRuleValidator implements RuleValidator {
         return results;
     }
 
-    /** Valores neutros para tudo o que o caso de teste não informou: números 0, booleanos falsos, textos vazios. */
     private EvaluationContext context(Map<String, Object> given) {
         var builder = EvaluationContext.builder();
         catalog.features().forEach((name, type) -> builder.put(name, switch (type) {

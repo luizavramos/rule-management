@@ -23,7 +23,6 @@ public final class GetActiveRuleSet {
         this.rules = rules;
     }
 
-    /** Número da versão ativa, sem ler o conjunto. Serve para responder 304 barato. */
     public OptionalLong currentVersion() {
         return ruleSets.activeVersion();
     }

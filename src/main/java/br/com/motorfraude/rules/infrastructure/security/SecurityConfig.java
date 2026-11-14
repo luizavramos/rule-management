@@ -33,11 +33,6 @@ public class SecurityConfig {
     private static final String APPROVER = "RULE_APPROVER";
     private static final String READER = "RULE_READER";
 
-    /**
-     * BCrypt de custo baixo (4). O HTTP Basic confere a senha a cada requisição: com o custo padrão (10) medi ~75 ms por
-     * chamada, o que estourava o p99 de 10 ms do GET /active (SC-002). Os usuários são locais e a senha já está na
-     * configuração; em produção a identidade vem do OIDC no ALB [DOC], sem senha neste serviço.
-     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(4);

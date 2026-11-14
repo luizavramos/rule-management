@@ -82,7 +82,6 @@ public record RuleVersion(String ruleId, int version, String expression, Map<Str
         }
     }
 
-    /** Nova versão em rascunho. */
     public static RuleVersion draft(String ruleId, int version, String expression, Map<String, Object> params,
             Map<String, Map<String, Object>> paramOverrides, int weight, String reasonTemplate, String author,
             Instant createdAt) {
@@ -99,7 +98,6 @@ public record RuleVersion(String ruleId, int version, String expression, Map<Str
                 author, approver, createdAt);
     }
 
-    /** Ativa a versão; {@code approver} fica registrado em {@code approvedBy}. */
     public RuleVersion activate(String approver) {
         return transitionTo(RuleStatus.ACTIVE, approver);
     }

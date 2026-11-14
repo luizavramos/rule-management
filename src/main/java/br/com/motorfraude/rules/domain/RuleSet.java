@@ -10,7 +10,6 @@ public record RuleSet(long version, Instant publishedAt, String publishedBy, Sco
         items = List.copyOf(items);
     }
 
-    /** O item da regra neste conjunto, ou nulo se a regra não está nele. */
     public RuleSetItem item(String ruleId) {
         return items.stream().filter(i -> i.ruleId().equals(ruleId)).findFirst().orElse(null);
     }

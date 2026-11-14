@@ -77,7 +77,6 @@ public class RuleController {
                 history.versions().stream().map(VersionResponse::of).toList());
     }
 
-    /** Valida sem gravar nada. Expressão inválida não é erro da chamada: volta 200 com {@code valid=false}. */
     @PostMapping("/v1/rules:validate")
     public ValidationResponse validate(@RequestBody RuleRequest request) {
         return ValidationResponse.of(validateRule.execute(request.toContent(false), request.cases()));

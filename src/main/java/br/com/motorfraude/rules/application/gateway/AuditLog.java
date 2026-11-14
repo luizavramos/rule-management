@@ -8,6 +8,5 @@ public interface AuditLog {
 
     void append(AuditEntry entry);
 
-    /** As entradas mais recentes primeiro. */
     List<AuditEntry> recent(int limit);
 }

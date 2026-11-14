@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Núcleo de toda mudança (plano 002, §4.2). Numa única transação serializável: lê o conjunto ativo, aplica a mudança,
@@ -91,7 +90,6 @@ public final class RuleSetPublisher {
         });
     }
 
-    /** Itens do conjunto atual sem a regra dada (ponto de partida para trocar ou remover um item). */
     static List<RuleSetItem> itemsWithout(RuleSet current, String ruleId) {
         var items = new ArrayList<>(current.items());
         items.removeIf(i -> i.ruleId().equals(ruleId));

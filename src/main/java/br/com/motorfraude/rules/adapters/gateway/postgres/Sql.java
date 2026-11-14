@@ -12,7 +12,6 @@ final class Sql {
 
     private Sql() {}
 
-    /** O Postgres guarda microssegundos; truncar antes de gravar evita que o valor lido difira do original. */
     static OffsetDateTime timestamp(Instant instant) {
         return OffsetDateTime.ofInstant(instant.truncatedTo(ChronoUnit.MICROS), ZoneOffset.UTC);
     }
