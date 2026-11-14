@@ -22,9 +22,41 @@
             <version>${rules-kernel.version}</version>
         </dependency>
 
-        <!-- Spring Boot, Postgres e Flyway entram nas Fases 4 e 5 -->
+        <!-- Persistência: JDBC com SQL explícito (jsonb, transação serializável), Flyway e Postgres -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- JSON dos parâmetros (jsonb) e da auditoria: Jackson 3 -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
 
         <!-- Testes -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>br.com.motorfraude</groupId>
             <artifactId>platform-commons</artifactId>
@@ -51,6 +83,33 @@
     <properties>
         <rules-kernel.version>0.1.0</rules-kernel.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Única exceção à regra "sem Jackson 2": o Flyway 11 exige o ObjectMapper do Jackson 2 para carregar a
+                     configuração (verificado: sem ele, NoClassDefFoundError). Decisão do usuário, registrada no plano 002.
+                     O nosso código segue só com Jackson 3: ver RuleManagementArchitectureTest. -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-platform</id>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <includes>
+                                        <include>com.fasterxml.jackson.core:jackson-databind</include>
+                                        <include>com.fasterxml.jackson.core:jackson-core</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>
