@@ -7,6 +7,7 @@ import br.com.motorfraude.rules.application.RuleNotInSetException;
 import br.com.motorfraude.rules.application.RuleSetInvalidException;
 import br.com.motorfraude.rules.domain.InvalidRuleDefinitionException;
 import br.com.motorfraude.rules.domain.InvalidTransitionException;
+import br.com.motorfraude.rules.domain.SelfApprovalException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,12 @@ public class RestExceptionHandler {
     @ExceptionHandler({RuleAlreadyExistsException.class, RuleNotInSetException.class, InvalidTransitionException.class})
     ResponseEntity<Map<String, Object>> conflict(RuntimeException e) {
         return problem(HttpStatus.CONFLICT, "conflict", "Conflito", e.getMessage(), List.of());
+    }
+
+    @ExceptionHandler(SelfApprovalException.class)
+    ResponseEntity<Map<String, Object>> selfApproval(SelfApprovalException e) {
+        return problem(HttpStatus.FORBIDDEN, "self-approval", "Aprovação por outra pessoa",
+                "A ativação precisa ser feita por alguém diferente de quem criou a regra.", List.of(e.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)

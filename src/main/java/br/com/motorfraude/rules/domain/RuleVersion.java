@@ -89,6 +89,9 @@ public record RuleVersion(String ruleId, int version, String expression, Map<Str
         if (!TRANSITIONS.get(status).contains(target)) {
             throw new InvalidTransitionException(status, target);
         }
+        if (target == RuleStatus.ACTIVE && author.equals(actor)) {
+            throw new SelfApprovalException(ruleId, version, actor);
+        }
         var approver = target == RuleStatus.ACTIVE ? actor : approvedBy;
         return new RuleVersion(ruleId, version, expression, params, paramOverrides, weight, reasonTemplate, target,
                 author, approver, createdAt);
