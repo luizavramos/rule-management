@@ -27,7 +27,6 @@
             <artifactId>platform-commons</artifactId>
         </dependency>
 
-        <!-- API REST, segurança (usuários em memória) e métricas -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
@@ -45,7 +44,6 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
 
-        <!-- Persistência: JDBC com SQL explícito (jsonb, transação serializável), Flyway e Postgres -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -63,13 +61,11 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- JSON dos parâmetros (jsonb) e da auditoria: Jackson 3 -->
         <dependency>
             <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
-        <!-- Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
@@ -81,7 +77,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <!-- Só para validar o corpo do GET /active contra o schema rule-set.v1 -->
             <groupId>br.com.motorfraude</groupId>
             <artifactId>contracts</artifactId>
             <scope>test</scope>
@@ -126,8 +121,6 @@
     <build>
         <plugins>
             <plugin>
-                <!-- O repackage do Boot transforma o jar principal em executável (classes em BOOT-INF/classes); o Failsafe
-                     roda depois e precisa das classes normais. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
@@ -146,9 +139,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <!-- Única exceção à regra "sem Jackson 2": o Flyway 11 exige o ObjectMapper do Jackson 2 para carregar a
-                     configuração (verificado: sem ele, NoClassDefFoundError). Decisão do usuário, registrada no plano 002.
-                     O nosso código segue só com Jackson 3: ver RuleManagementArchitectureTest. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>

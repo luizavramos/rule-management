@@ -1,4 +1,3 @@
-# Valores locais (spec 002, plan §2). Em produção, tudo isto vem de variáveis de ambiente.
 spring:
   application:
     name: rule-management
@@ -17,7 +16,6 @@ server:
 
 rules:
   security:
-    # Usuários locais em memória (FR-009). Em produção, OIDC via ALB [DOC]. Troque as senhas por variáveis de ambiente.
     users:
       - name: analista
         password: ${RULES_ANALISTA_PASSWORD:analista-local}

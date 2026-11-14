@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Logs em JSON com dados pessoais mascarados: fragmento comum do platform-commons (constituição VI e VII) -->
 <configuration>
     <include resource="logback-base.xml"/>
     <root level="INFO">
