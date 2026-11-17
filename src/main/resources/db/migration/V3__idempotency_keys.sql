@@ -1,6 +1,3 @@
--- Idempotency-Key (plano 002, secao 4.4): a resposta de cada POST/PUT com chave, por usuario, repetida em reenvios.
--- Linhas com mais de 24 h sao tratadas como vencidas e reaproveitadas na proxima reserva da mesma chave; a tabela e
--- pequena (so operacoes manuais da API), entao nao ha rotina de limpeza.
 
 CREATE TABLE idempotency_keys (
     actor                 text        NOT NULL,

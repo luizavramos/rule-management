@@ -1,4 +1,3 @@
--- rule-management (spec 002, plano 4.3): regras, versoes imutaveis, conjuntos publicados e auditoria append-only.
 
 CREATE TABLE rules (
     rule_id    text        PRIMARY KEY,
@@ -21,7 +20,6 @@ CREATE TABLE rule_versions (
     PRIMARY KEY (rule_id, version)
 );
 
--- Versao imutavel: so o status e o aprovador podem mudar. Mudar o conteudo exige uma versao nova.
 CREATE FUNCTION rule_versions_keep_content() RETURNS trigger AS $$
 BEGIN
     IF NEW.rule_id <> OLD.rule_id OR NEW.version <> OLD.version OR NEW.expression <> OLD.expression
@@ -45,7 +43,6 @@ CREATE TABLE rule_sets (
     CHECK (medium_threshold <= high_threshold)
 );
 
--- O status do item e o que a versao tinha NAQUELE conjunto (o rollback restaura isso).
 CREATE TABLE rule_set_items (
     rule_set_version bigint  NOT NULL REFERENCES rule_sets (version),
     rule_id          text    NOT NULL,
@@ -65,7 +62,6 @@ CREATE TABLE audit_log (
     at     timestamptz NOT NULL
 );
 
--- Append-only: nem UPDATE nem DELETE.
 CREATE FUNCTION audit_log_append_only() RETURNS trigger AS $$
 BEGIN
     RAISE EXCEPTION 'audit_log e append-only';

@@ -1,5 +1,3 @@
--- As 8 regras iniciais (plano 002, secao 5) e o scoring 40/70, publicados como o conjunto versao 1.
--- As mesmas expressoes e parametros estao em rules-kernel/src/test/resources/initial-rules.json (SC-003 da spec 002).
 
 INSERT INTO rules (rule_id, created_by, created_at)
 SELECT r, 'system', now() FROM unnest(ARRAY['R01', 'R03', 'R04', 'R05', 'R07', 'R09', 'R10', 'R12']) AS r;
