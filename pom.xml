@@ -17,6 +17,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
             <groupId>br.com.motorfraude</groupId>
             <artifactId>rules-kernel</artifactId>
             <version>${rules-kernel.version}</version>

@@ -58,7 +58,8 @@ public class SecurityConfig {
                                 "Acesso negado", "Seu perfil não permite esta operação.")))
                 .authorizeHttpRequests(a -> a
                         .requestMatchers(path.matcher("/actuator/health/**"), path.matcher("/actuator/health"),
-                                path.matcher("/actuator/prometheus")).permitAll()
+                                path.matcher("/actuator/prometheus"), path.matcher("/v3/api-docs/**"), path.matcher("/swagger-ui/**"),
+                                path.matcher("/swagger-ui.html")).permitAll()
                         .requestMatchers(path.matcher(HttpMethod.GET, "/v1/rules"), path.matcher(HttpMethod.GET, "/v1/rules/{ruleId}"),
                                 path.matcher(HttpMethod.GET, "/v1/rule-sets/active")).hasAnyRole(AUTHOR, APPROVER, READER)
                         .requestMatchers(path.matcher(HttpMethod.POST, "/v1/rules/{ruleId}/versions/{version}:activate"),
