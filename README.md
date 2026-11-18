@@ -3,7 +3,7 @@
 Gestão das regras de detecção de fraude **sem redeploy**. Um analista cria e testa uma regra, um coordenador a ativa, e o
 motor de detecção passa a usá-la em segundos, sem reiniciar. Spring Boot 4, Java 21, virtual threads, Postgres. Porta 8082.
 
-Visão geral do projeto: https://github.com/luizavramos/motor-fraude · Spec: `specs/002-rule-management/` naquele repositório ·
+Visão geral do projeto: https://github.com/luizavramos/fraud-detection-engine ·
 Todos os endpoints, com request e response: `docs/endpoints.md` (seção 2).
 
 ## O que faz
