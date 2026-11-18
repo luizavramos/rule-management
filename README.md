@@ -71,7 +71,7 @@ Exemplo de regra (`POST /v1/rules:validate`):
 ```
 
 Um roteiro completo (criar, testar em sombra, ativar, desligar, reverter) está em `docs/demo-regras.http` no repositório
-`motor-fraude`.
+`fraud-detection-engine`.
 
 ## Usuários e papéis
 

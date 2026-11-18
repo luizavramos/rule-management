@@ -13,7 +13,7 @@
 
     <artifactId>rule-management</artifactId>
     <name>rule-management</name>
-    <description>Gestão de regras: versiona, valida, ativa, desliga e reverte regras, e serve o conjunto ativo (spec 002).</description>
+    <description>Gestão de regras: versiona, valida, ativa, desliga e reverte regras, e serve o conjunto ativo.</description>
 
     <dependencies>
         <dependency>
