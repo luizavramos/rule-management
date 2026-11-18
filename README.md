@@ -112,7 +112,7 @@ instalados (`./mvnw install` em cada um, nessa ordem, ou token do GitHub Package
 java -jar target/rule-management-*.jar
 ```
 
-Com o compose do repositório `motor-fraude`, depois de gerar o jar:
+Com o compose do repositório `fraud-detection-engine`, depois de gerar o jar:
 
 ```bash
 docker compose --profile app up -d --build rule-management
