@@ -134,5 +134,5 @@ infrastructure/ configuração do Spring
 
 ## Limitações conhecidas
 
-- Os usuários são fixos em memória (HTTP Basic). Em produção a proposta é OIDC no balanceador (ver `arquitetura-aws.drawio`).
+- Os usuários são fixos em memória (HTTP Basic). Em produção a proposta é OIDC no balanceador.
 - Não há tela: a interação é pela API e pelo Swagger.
